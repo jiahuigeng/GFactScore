@@ -17,8 +17,9 @@ class LM(object):
         prompt = prompt.strip() # it's important not to end with a whitespace
         cache_key = f"{prompt}_{sample_idx}"
 
-        if cache_key in self.cache_dict:
-            return self.cache_dict[cache_key]
+        # if self.cache_dict:
+        #     if cache_key in self.cache_dict:
+        #         return self.cache_dict[cache_key]
 
         if self.model is None:
             self.load_model()
@@ -44,7 +45,8 @@ class LM(object):
             pickle.dump(self.cache_dict, f)
 
     def load_cache(self):
-        if os.path.exists(self.cache_file):
+
+        if self.cache_file and os.path.exists(self.cache_file):
             with open(self.cache_file, "rb") as f:
                 cache = pickle.load(f)
         else:

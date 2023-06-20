@@ -13,6 +13,9 @@ class OpenAIModel(LM):
         self.key_path = key_path
         self.temp = 0.7
         self.save_interval = 100
+        self.model = None
+        self.add_n = 0
+
         super().__init__(cache_file)
 
     def load_model(self):
